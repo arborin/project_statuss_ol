@@ -10,13 +10,17 @@ export const data = [
                 id: 2,
                 name: "Jemali Janjgava",
             },
+            {
+                id: 3,
+                name: "Muhamed gonzoevi",
+            },
         ],
 
         colors: [
-            { id: 1, name: "default", code: "#dedede" },
-            { id: 2, name: "check", code: "#da8877" },
-            { id: 3, name: "improve", code: "#dedede" },
-            { id: 4, name: "done", code: "#dedede" },
+            { id: 1, name: "default", code: "#e74c3c" },
+            { id: 2, name: "check", code: "#f1c40f" },
+            { id: 3, name: "improve", code: "#3498db" },
+            { id: 4, name: "done", code: "#27ae60" },
         ],
 
         projects: [
@@ -25,10 +29,12 @@ export const data = [
         ],
 
         results: [
-            { student_id: 1, project_id: 1, color_id: 1 },
-            { student_id: 1, project_id: 2, color_id: 2 },
-            { student_id: 2, project_id: 1, color_id: 1 },
-            { student_id: 2, project_id: 2, color_id: 2 },
+            { student_id: 1, project_id: 1, color_id: 1, comment: "" },
+            { student_id: 1, project_id: 2, color_id: 2, comment: "" },
+            { student_id: 2, project_id: 1, color_id: 4, comment: "" },
+            { student_id: 2, project_id: 2, color_id: 2, comment: "" },
+            { student_id: 3, project_id: 1, color_id: 1, comment: "" },
+            { student_id: 3, project_id: 2, color_id: 1, comment: "" },
         ],
     },
 ];
