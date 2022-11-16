@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 
 function Nav() {
     return (
-        <div>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/groups">Groups</Link>
-                </li>
-            </ul>
-        </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item active">
+                        <Link to="/" className="nav-link">
+                            Home
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/groups" className="nav-link">
+                            Groups
+                        </Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     );
 }
 

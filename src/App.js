@@ -6,7 +6,7 @@ import Nav from "./pages/Nav";
 
 function App() {
     return (
-        <>
+        <div className="container">
             <BrowserRouter>
                 <Nav />
                 <Routes>
@@ -15,7 +15,7 @@ function App() {
                     {/* <Route path="contact" element={<Contact />} /> */}
                 </Routes>
             </BrowserRouter>
-        </>
+        </div>
     );
 }
 
