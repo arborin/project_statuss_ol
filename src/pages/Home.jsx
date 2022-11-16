@@ -4,9 +4,35 @@ import "./Home.css";
 import Welcome from "../components/Welcome";
 import GroupComp from "../components/GroupComp";
 import NavigationBtn from "../components/NavigationBtn";
+import ProjectComp from "../components/ProjectComp";
+import ProjectListComp from "../components/ProjectListComp";
 function Home() {
     const [step, setStep] = useState(0);
     const [groupName, setGroupName] = useState("");
+
+    const [projectName, setProjectName] = useState("");
+    const [projects, setProjects] = useState([]);
+
+    const addProject = () => {
+        if (projectName.trim() !== "") {
+            let id = 0;
+            if (projects.length > 0) {
+                console.log(projects.slice(-1));
+                let lastItem = projects.slice(-1)[0];
+                id = lastItem.id + 1;
+            }
+            const project = { id: id, name: projectName };
+            setProjects([...projects, project]);
+            setProjectName("");
+        }
+    };
+
+    const deleteProject = (id) => {
+        const newProjects = projects.filter((project) => {
+            return project.id !== id;
+        });
+        setProjects(newProjects);
+    };
 
     const createNewGroup = () => {
         setStep(1);
@@ -23,7 +49,7 @@ function Home() {
     };
 
     return (
-        <div className="center-content">
+        <div className="center-content container">
             <div
                 className="card "
                 style={{ marginTop: "50px", width: "40rem" }}
@@ -41,10 +67,24 @@ function Home() {
                             setGroupName={setGroupName}
                         />
                     )}
+                    {step === 2 && (
+                        <ProjectComp
+                            projectName={projectName}
+                            setProjectName={setProjectName}
+                            addProject={addProject}
+                        />
+                    )}
 
                     {step !== 0 && <NavigationBtn moveStep={moveStep} />}
                 </div>
             </div>
+
+            {step === 2 && (
+                <ProjectListComp
+                    projects={projects}
+                    deleteProject={deleteProject}
+                />
+            )}
         </div>
     );
 }
