@@ -3,6 +3,7 @@ import { data } from "../data";
 import "./Home.css";
 import Welcome from "../components/Welcome";
 import GroupComp from "../components/GroupComp";
+import NavigationBtn from "../components/NavigationBtn";
 function Home() {
     const [step, setStep] = useState(0);
 
@@ -35,27 +36,7 @@ function Home() {
                         <GroupComp createNewGroup={createNewGroup} />
                     )}
 
-                    {step !== 0 && (
-                        <div>
-                            <button
-                                className="btn btn-outline-primary"
-                                onClick={(value) => {
-                                    moveStep(-1);
-                                }}
-                            >
-                                Prev
-                            </button>
-                            <button
-                                className="btn btn-outline-primary"
-                                style={{ marginLeft: "15px" }}
-                                onClick={(value) => {
-                                    moveStep(1);
-                                }}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    )}
+                    {step !== 0 && <NavigationBtn moveStep={moveStep} />}
                 </div>
             </div>
         </div>
