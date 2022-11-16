@@ -4,9 +4,8 @@ function GroupComp({ groupName, setGroupName }) {
     return (
         <div>
             <div>
+                <h5 className="mb-4 mt-4">Enter Group name</h5>
                 <p className="card-text">
-                    <h5 className="mb-4 mt-4">Enter Group name</h5>
-
                     <input
                         className="form-control mb-3"
                         type="text"

@@ -6,6 +6,7 @@ import GroupComp from "../components/GroupComp";
 import NavigationBtn from "../components/NavigationBtn";
 function Home() {
     const [step, setStep] = useState(0);
+    const [groupName, setGroupName] = useState("");
 
     const createNewGroup = () => {
         setStep(1);
@@ -16,7 +17,9 @@ function Home() {
         if (step + value > 5) {
             value = 0;
         }
-        setStep(step + value);
+        if (groupName.trim() !== "") {
+            setStep(step + value);
+        }
     };
 
     return (
@@ -33,7 +36,10 @@ function Home() {
 
                     {step === 0 && <Welcome createNewGroup={createNewGroup} />}
                     {step === 1 && (
-                        <GroupComp createNewGroup={createNewGroup} />
+                        <GroupComp
+                            groupName={groupName}
+                            setGroupName={setGroupName}
+                        />
                     )}
 
                     {step !== 0 && <NavigationBtn moveStep={moveStep} />}
