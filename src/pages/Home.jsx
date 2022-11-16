@@ -3,11 +3,10 @@ import { data } from "../data";
 import "./Home.css";
 import Welcome from "../components/Welcome";
 function Home() {
-    const [step, setStep] = useState(1);
-    const [showStart, setShowStart] = useState(true);
+    const [step, setStep] = useState(0);
 
     const createNewGroup = () => {
-        setShowStart(false);
+        setStep(1);
         console.log("HEHEHE");
     };
 
@@ -18,12 +17,12 @@ function Home() {
                 style={{ marginTop: "50px", width: "40rem" }}
             >
                 <div className="card-body text-center">
-                    <h5 className="card-title">Step: 1/5</h5>
+                    <h5 className="card-title">
+                        {step !== 0 ? `${step}/5` : ""}
+                    </h5>
                     <h6 className="card-subtitle mb-2 text-muted"></h6>
 
-                    {showStart && step === 1 && (
-                        <Welcome createNewGroup={createNewGroup} />
-                    )}
+                    {step === 0 && <Welcome createNewGroup={createNewGroup} />}
                 </div>
             </div>
         </div>
