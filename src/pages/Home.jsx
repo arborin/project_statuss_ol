@@ -127,7 +127,9 @@ function Home() {
                     onChange={groupNameHandler}
                 />
                 <button onClick={addGroupName}>Add Group Name</button>
+                <p>{groupName ? groupName : "No Group name"}</p>
             </div>
+
             <h3>ADD PROJECTS</h3>
             <div style={{ borderTop: "1px solid #dedede", marginBottom: 20 }}>
                 <label htmlFor="group-name">Enter project Name: </label>
