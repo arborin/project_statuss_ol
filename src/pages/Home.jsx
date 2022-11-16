@@ -4,14 +4,18 @@ import "./Home.css";
 import Welcome from "../components/Welcome";
 import GroupComp from "../components/GroupComp";
 import NavigationBtn from "../components/NavigationBtn";
-import ProjectComp from "../components/ProjectComp";
-import ProjectListComp from "../components/ProjectListComp";
+import RecordListComp from "../components/RecordListComp";
+import InputComp from "../components/InputComp";
+
 function Home() {
     const [step, setStep] = useState(0);
     const [groupName, setGroupName] = useState("");
 
     const [projectName, setProjectName] = useState("");
     const [projects, setProjects] = useState([]);
+
+    const [studentName, setStudentName] = useState("");
+    const [students, setStudents] = useState([]);
 
     const addProject = () => {
         if (projectName.trim() !== "") {
@@ -32,6 +36,28 @@ function Home() {
             return project.id !== id;
         });
         setProjects(newProjects);
+    };
+
+    const addStudent = () => {
+        console.log("ADD STUDENT");
+        let id = 0;
+        if (students.length > 0) {
+            console.log(students.slice(-1));
+            let lastItem = students.slice(-1)[0];
+            id = lastItem.id + 1;
+        }
+        const student = { id: id, name: studentName };
+
+        setStudents([...students, student]);
+        setStudentName("");
+    };
+
+    const deleteStudent = (id) => {
+        console.log("DELETE " + id);
+        const newStudents = students.filter((student) => {
+            return student.id !== id;
+        });
+        setStudents(newStudents);
     };
 
     const createNewGroup = () => {
@@ -68,10 +94,20 @@ function Home() {
                         />
                     )}
                     {step === 2 && (
-                        <ProjectComp
-                            projectName={projectName}
-                            setProjectName={setProjectName}
-                            addProject={addProject}
+                        <InputComp
+                            title="project"
+                            value={projectName}
+                            setValue={setProjectName}
+                            addNew={addProject}
+                        />
+                    )}
+
+                    {step === 3 && (
+                        <InputComp
+                            title="student"
+                            value={studentName}
+                            setValue={setStudentName}
+                            addNew={addStudent}
                         />
                     )}
 
@@ -80,10 +116,10 @@ function Home() {
             </div>
 
             {step === 2 && (
-                <ProjectListComp
-                    projects={projects}
-                    deleteProject={deleteProject}
-                />
+                <RecordListComp items={projects} deleteItem={deleteProject} />
+            )}
+            {step === 3 && (
+                <RecordListComp items={students} deleteItem={deleteStudent} />
             )}
         </div>
     );

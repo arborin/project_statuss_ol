@@ -1,18 +1,18 @@
 import React from "react";
 
-function ProjectListComp({ projects, deleteProject }) {
+function RecordListComp({ items, deleteItem }) {
     return (
         <div className="mt-4 center-content">
             <ul className="list-group" style={{ width: "40rem" }}>
-                {projects.map((project, index) => {
+                {items.map((item, index) => {
                     return (
                         <li key={index} className="list-group-item">
-                            {project.name}{" "}
+                            {item.name}{" "}
                             <span className="float-end">
                                 <button
                                     className="btn btn-link"
                                     onClick={(id) => {
-                                        deleteProject(project.id);
+                                        deleteItem(item.id);
                                     }}
                                 >
                                     Delete
@@ -26,4 +26,4 @@ function ProjectListComp({ projects, deleteProject }) {
     );
 }
 
-export default ProjectListComp;
+export default RecordListComp;
