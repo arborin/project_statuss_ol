@@ -11,6 +11,13 @@ function Home() {
         console.log("HEHEHE");
     };
 
+    const moveStep = (value) => {
+        if (step + value > 5) {
+            value = 0;
+        }
+        setStep(step + value);
+    };
+
     return (
         <div className="center-content">
             <div
@@ -30,12 +37,20 @@ function Home() {
 
                     {step !== 0 && (
                         <div>
-                            <button className="btn btn-outline-primary">
+                            <button
+                                className="btn btn-outline-primary"
+                                onClick={(value) => {
+                                    moveStep(-1);
+                                }}
+                            >
                                 Prev
                             </button>
                             <button
                                 className="btn btn-outline-primary"
                                 style={{ marginLeft: "15px" }}
+                                onClick={(value) => {
+                                    moveStep(1);
+                                }}
                             >
                                 Next
                             </button>
