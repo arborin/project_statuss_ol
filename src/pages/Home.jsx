@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { data } from "../data";
+// import { data } from "../data";
 import "./Home.css";
 import Welcome from "../components/Welcome";
 import GroupComp from "../components/GroupComp";
@@ -8,8 +8,11 @@ import RecordListComp from "../components/RecordListComp";
 import InputComp from "../components/InputComp";
 import ColorSelectComp from "../components/ColorSelectComp";
 import DoneProcessComp from "../components/DoneProcessComp";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+    const navigate = useNavigate();
+
     const [step, setStep] = useState(0);
     const [groupName, setGroupName] = useState("");
 
@@ -103,7 +106,7 @@ function Home() {
         });
         // create new group record
         const data = {
-            name: "React Learning",
+            name: groupName,
             students: students,
             colors: colors,
             projects: projects,
@@ -113,11 +116,14 @@ function Home() {
         console.log(data);
         let groups = localStorage.getItem("groups");
         if (groups !== null) {
+            groups = JSON.parse(groups);
             groups.push(data);
         } else {
             groups = [];
             groups.push(data);
         }
+
+        console.log(groups);
 
         localStorage.setItem("groups", JSON.stringify(groups));
         // console.log(groups);
@@ -125,6 +131,9 @@ function Home() {
         // redirect to groups
 
         console.log("DONE");
+
+        let path = `/groups`;
+        navigate(path);
     };
 
     const moveStep = (value) => {
