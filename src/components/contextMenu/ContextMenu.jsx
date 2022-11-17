@@ -4,9 +4,8 @@ import "./ContextMenu.css";
 function ContextMenu(props) {
     // console.log("============================");
     // console.log(props);
-    const x = props.data.x;
-    const y = props.data.y;
-    const text = props.data.text;
+    const { x, y, colors, updateStatus } = props;
+
     // console.log("============================");
 
     return (
@@ -16,13 +15,18 @@ function ContextMenu(props) {
                 style={{ position: "absolute", left: x, top: y }}
             >
                 <ul>
-                    <li key={text}>{text}</li>
-                    <li key={"edit"} onClick={props.data.edit}>
-                        Edit
-                    </li>
-                    <li key={"delete"} onClick={props.data.del}>
-                        Delete
-                    </li>
+                    {colors.map((color, index) => {
+                        return (
+                            <li
+                                key={index}
+                                style={{ backgroundColor: color.code }}
+                                className="text-capitalize"
+                                onClick={(color_id) => updateStatus(color.id)}
+                            >
+                                {color.name}
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </>

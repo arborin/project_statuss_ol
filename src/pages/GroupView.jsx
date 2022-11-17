@@ -10,13 +10,25 @@ function GroupView() {
 
     const [group, setGroup] = useState(groups[groupIndex]);
     const [showMenu, setShowMenu] = useState(false);
-    const [position, setPosition] = useState({ x: 0, y: 0, text: "" });
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0,
+        student_id: "",
+        project_id: "",
+    });
     const { students, projects, results, colors } = group;
 
-    const contextMenu = (e, text) => {
+    const contextMenu = (e, student_id, project_id) => {
+        console.log(student_id, "=", project_id);
+
         e.preventDefault();
         setShowMenu(true);
-        setPosition({ x: e.clientX, y: e.clientY, text: text });
+        setPosition({
+            x: e.clientX,
+            y: e.clientY,
+            student_id: student_id,
+            project_id: project_id,
+        });
         // console.log(position.x);
         // console.log(position.y);
         // console.log("TEXT: " + text);
@@ -24,6 +36,28 @@ function GroupView() {
 
     const closeContextMenu = () => {
         setShowMenu(false);
+    };
+
+    const updateStatus = (color_id) => {
+        let new_results = group.results.map((result) => {
+            if (
+                result.student_id === position.student_id &&
+                result.project_id === position.project_id
+            ) {
+                result.color_id = color_id;
+            }
+            return result;
+        });
+
+        setGroup({ ...group, results: new_results });
+
+        updateLocalStorage(new_results);
+    };
+
+    const updateLocalStorage = (results) => {
+        groups[groupIndex].results = results;
+
+        localStorage.setItem("groups", JSON.stringify(groups));
     };
 
     useEffect(() => {
@@ -73,20 +107,12 @@ function GroupView() {
                                             result.project_id === project.id
                                         );
                                     });
-                                    console.log(
-                                        "======================================"
-                                    );
 
                                     let color_id = res[0].color_id;
 
                                     let color = colors.filter((color) => {
                                         return color.id === color_id;
                                     });
-
-                                    console.log(color[0].code);
-                                    console.log(
-                                        "======================================"
-                                    );
 
                                     return (
                                         <td
@@ -114,12 +140,11 @@ function GroupView() {
             </table>
             {showMenu && (
                 <ContextMenu
-                    data={{
-                        // del: deleteMenu,
-                        // edit: editMenu,
-                        x: position.x,
-                        y: position.y,
-                        colors: group.colors,
+                    x={position.x}
+                    y={position.y}
+                    colors={group.colors}
+                    updateStatus={(color_id) => {
+                        updateStatus(color_id);
                     }}
                 />
             )}
