@@ -7,7 +7,7 @@ function Groups() {
     if (groups === null) {
         return (
             <div className="text-center mt-1">
-                <h5>Groups not found!</h5>
+                <h5 className="mt-5">Groups not found!</h5>
                 <NavLink to="/" className="btn btn-primary mt-5">
                     Home
                 </NavLink>
