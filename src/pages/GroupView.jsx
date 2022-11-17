@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import StatusColorComp from "../components/groups/StatusColorComp";
+import ContextMenu from "../components/contextMenu/ContextMenu";
 
 function GroupView() {
     const params = useParams();
-
     const groupIndex = params.id;
-
     let groups = JSON.parse(localStorage.getItem("groups"));
-    // let group = groups[groupIndex];
 
     const [group, setGroup] = useState(groups[groupIndex]);
-
+    const [showMenu, setShowMenu] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0, text: "" });
     const { students, projects, results, colors } = group;
+
+    const contextMenu = (e, text) => {
+        e.preventDefault();
+        setShowMenu(true);
+        setPosition({ x: e.clientX, y: e.clientY, text: text });
+        // console.log(position.x);
+        // console.log(position.y);
+        // console.log("TEXT: " + text);
+    };
+
+    const closeContextMenu = () => {
+        setShowMenu(false);
+    };
+
+    useEffect(() => {
+        window.addEventListener("click", closeContextMenu);
+
+        return function cleanup() {
+            window.removeEventListener("click", closeContextMenu);
+        };
+    }, []);
 
     return (
         <div>
@@ -70,13 +90,20 @@ function GroupView() {
 
                                     return (
                                         <td
+                                            onContextMenu={(event) =>
+                                                contextMenu(
+                                                    event,
+                                                    student.id,
+                                                    project.id
+                                                )
+                                            }
                                             key={index}
                                             style={{
                                                 backgroundColor: color[0].code,
                                             }}
                                         >
                                             {student.id} - {project.id} -{" "}
-                                            {color[0].code}
+                                            {color[0].code} - {color[0].name}
                                         </td>
                                     );
                                 })}
@@ -85,6 +112,17 @@ function GroupView() {
                     })}
                 </tbody>
             </table>
+            {showMenu && (
+                <ContextMenu
+                    data={{
+                        // del: deleteMenu,
+                        // edit: editMenu,
+                        x: position.x,
+                        y: position.y,
+                        colors: group.colors,
+                    }}
+                />
+            )}
         </div>
     );
 }
