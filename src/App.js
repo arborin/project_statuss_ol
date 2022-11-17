@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Groups from "./pages/Groups";
 import Home from "./pages/Home";
 import Nav from "./pages/Nav";
+import GroupView from "./pages/GroupView";
 
 function App() {
     return (
@@ -11,8 +12,8 @@ function App() {
                 <Nav />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="groups" element={<Groups />} />
-                    {/* <Route path="contact" element={<Contact />} /> */}
+                    <Route path="/groups" element={<Groups />} />
+                    <Route path="/group/:id" element={<GroupView />} />
                 </Routes>
             </BrowserRouter>
         </div>
