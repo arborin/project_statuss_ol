@@ -6,6 +6,7 @@ import GroupComp from "../components/GroupComp";
 import NavigationBtn from "../components/NavigationBtn";
 import RecordListComp from "../components/RecordListComp";
 import InputComp from "../components/InputComp";
+import ColorSelectComp from "../components/ColorSelectComp";
 
 function Home() {
     const [step, setStep] = useState(0);
@@ -16,6 +17,29 @@ function Home() {
 
     const [studentName, setStudentName] = useState("");
     const [students, setStudents] = useState([]);
+
+    const color_data = [
+        { id: 1, name: "default", code: "#dedede" },
+        { id: 2, name: "check", code: "#f1c40f" },
+        { id: 3, name: "improve", code: "#3498db" },
+        { id: 4, name: "done", code: "#27ae60" },
+    ];
+
+    const [colors, setColors] = useState(color_data);
+
+    const changeColorCode = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        const updatedColors = colors.map((color) => {
+            if (color.name === name) {
+                color.code = value;
+            }
+            return color;
+        });
+
+        setColors(updatedColors);
+    };
 
     const addProject = () => {
         if (projectName.trim() !== "") {
@@ -108,6 +132,13 @@ function Home() {
                             value={studentName}
                             setValue={setStudentName}
                             addNew={addStudent}
+                        />
+                    )}
+
+                    {step === 4 && (
+                        <ColorSelectComp
+                            colors={colors}
+                            changeColorCode={changeColorCode}
                         />
                     )}
 
