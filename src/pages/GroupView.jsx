@@ -11,7 +11,6 @@ function GroupView() {
     // let group = groups[groupIndex];
 
     const [group, setGroup] = useState(groups[groupIndex]);
-    console.log(group);
 
     const { students, projects, results, colors } = group;
 
@@ -21,7 +20,7 @@ function GroupView() {
                 {group.name}: {params.id}
             </h4>
 
-            <div>
+            <div className="mb-5">
                 {colors.map((color, index) => {
                     return (
                         <StatusColorComp
@@ -80,7 +79,7 @@ function GroupView() {
                                             {color[0].code}
                                         </td>
                                     );
-                                })}{" "}
+                                })}
                             </tr>
                         );
                     })}

@@ -23,7 +23,7 @@ function Home() {
     const [students, setStudents] = useState([]);
 
     const color_data = [
-        { id: 1, name: "default", code: "#dedede" },
+        { id: 1, name: "default", code: "#ff4f4f" },
         { id: 2, name: "check", code: "#f1c40f" },
         { id: 3, name: "improve", code: "#3498db" },
         { id: 4, name: "done", code: "#27ae60" },
