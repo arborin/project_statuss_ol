@@ -7,6 +7,7 @@ import NavigationBtn from "../components/NavigationBtn";
 import RecordListComp from "../components/RecordListComp";
 import InputComp from "../components/InputComp";
 import ColorSelectComp from "../components/ColorSelectComp";
+import DoneProcessComp from "../components/DoneProcessComp";
 
 function Home() {
     const [step, setStep] = useState(0);
@@ -84,9 +85,46 @@ function Home() {
         setStudents(newStudents);
     };
 
-    const createNewGroup = () => {
+    const startCreateNewGroup = () => {
         setStep(1);
+
         console.log("HEHEHE");
+    };
+
+    const createNewGroup = () => {
+        let results = [];
+
+        students.forEach((student) => {
+            let data = { student_id: student.id, color_id: 1, comment: "" };
+
+            projects.forEach((project) => {
+                results.push({ ...data, project_id: project.id });
+            });
+        });
+        // create new group record
+        const data = {
+            name: "React Learning",
+            students: students,
+            colors: colors,
+            projects: projects,
+            results: results,
+        };
+
+        console.log(data);
+        let groups = localStorage.getItem("groups");
+        if (groups !== null) {
+            groups.push(data);
+        } else {
+            groups = [];
+            groups.push(data);
+        }
+
+        localStorage.setItem("groups", JSON.stringify(groups));
+        // console.log(groups);
+        // localStorage.setItem("groups");
+        // redirect to groups
+
+        console.log("DONE");
     };
 
     const moveStep = (value) => {
@@ -110,7 +148,9 @@ function Home() {
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted"></h6>
 
-                    {step === 0 && <Welcome createNewGroup={createNewGroup} />}
+                    {step === 0 && (
+                        <Welcome startCreateNewGroup={startCreateNewGroup} />
+                    )}
                     {step === 1 && (
                         <GroupComp
                             groupName={groupName}
@@ -142,7 +182,13 @@ function Home() {
                         />
                     )}
 
-                    {step !== 0 && <NavigationBtn moveStep={moveStep} />}
+                    {step === 5 && (
+                        <DoneProcessComp createNewGroup={createNewGroup} />
+                    )}
+
+                    {step > 0 && step < 5 && (
+                        <NavigationBtn moveStep={moveStep} />
+                    )}
                 </div>
             </div>
 

@@ -9,7 +9,10 @@ function ColorSelectComp({ colors, changeColorCode }) {
                 <form>
                     {colors.map((color, index) => {
                         return (
-                            <div className="row mb-3 justify-content-center align-items-center">
+                            <div
+                                key={index}
+                                className="row mb-3 justify-content-center align-items-center"
+                            >
                                 <label
                                     htmlFor="colFormLabelSm"
                                     className="col-sm-2 col-form-label col-form-label-sm text-capitalize"
