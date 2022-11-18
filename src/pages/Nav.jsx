@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
     return (
@@ -8,6 +10,11 @@ function Nav() {
                 <ul className="navbar-nav">
                     <li className="nav-item active">
                         <Link to="/" className="nav-link">
+                            <FontAwesomeIcon
+                                icon={faHome}
+                                style={{ marginRight: "5px" }}
+                                className="text-primary"
+                            />
                             Home
                         </Link>
                     </li>
