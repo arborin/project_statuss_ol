@@ -9,7 +9,7 @@ function GroupListComp({ groups }) {
     const deleteGroup = (id) => {
         const newGroupList = groupList.filter((item, index) => index !== id);
 
-        if (newGroupList.length == 0) {
+        if (newGroupList.length === 0) {
             localStorage.removeItem("groups");
             console.log("HERE1");
         } else {

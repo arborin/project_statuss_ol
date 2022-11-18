@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import StatusColorComp from "../components/groups/StatusColorComp";
 import ContextMenu from "../components/contextMenu/ContextMenu";
+import Popup from "../components/popup/PopupComp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
 
 function GroupView() {
     const params = useParams();
@@ -17,6 +20,8 @@ function GroupView() {
         project_id: "",
     });
     const { students, projects, results, colors } = group;
+    const [openPopup, setOpenPopup] = useState(false);
+    const [commentData, setCommentData] = useState({});
 
     const contextMenu = (e, student_id, project_id) => {
         console.log(student_id, "=", project_id);
@@ -68,13 +73,71 @@ function GroupView() {
         };
     }, []);
 
-    return (
-        <div>
-            <h4 className="mt-4 mb-4">
-                {group.name}: {params.id}
-            </h4>
+    const openCommentPopup = (student_id, project_id) => {
+        console.log("STUDENT ID: " + student_id);
+        console.log("PROJECT ID: " + project_id);
+        console.log("GROUP ID: " + groupIndex);
 
-            <div className="mb-5">
+        let result = groups[groupIndex].results.filter(
+            (result) =>
+                result.student_id === student_id &&
+                result.project_id === project_id
+        );
+
+        console.log(result);
+
+        setCommentData({
+            student_id: student_id,
+            project_id: project_id,
+            groupIndex: groupIndex,
+            comment: result[0].comment,
+        });
+
+        setOpenPopup(true);
+    };
+
+    const closePopup = () => {
+        setOpenPopup(false);
+    };
+
+    const saveComment = (data) => {
+        console.log(">>> SAVE DATA ");
+        // console.log(data);
+        const { student_id, project_id, groupIndex, comment } = data;
+
+        // update group results
+        const groupNewResult = group.results.map((result) => {
+            if (
+                result.student_id === student_id &&
+                result.project_id === project_id
+            ) {
+                result.comment = comment;
+            }
+
+            return result;
+        });
+
+        setGroup({ ...group, results: groupNewResult });
+
+        // WRITE TO LOCALSTORAGE
+
+        groups[groupIndex].results = groupNewResult;
+
+        localStorage.setItem("groups", JSON.stringify(groups));
+
+        closePopup();
+    };
+
+    return (
+        <div className="container">
+            <h4 className="mt-4 mb-4">{group.name}</h4>
+            <div
+                className="mb-5"
+                style={{
+                    paddingBottom: "20px",
+                    borderBottom: "1px solid #ddd",
+                }}
+            >
                 {colors.map((color, index) => {
                     return (
                         <StatusColorComp
@@ -85,7 +148,6 @@ function GroupView() {
                     );
                 })}
             </div>
-
             <table className="table table-bordered">
                 <thead>
                     <tr>
@@ -138,6 +200,28 @@ function GroupView() {
                                             {color[0].code} - {color[0].name} */}
                                             <span className="text-capitalize">
                                                 {color[0].name}
+
+                                                <span
+                                                    className={`float-end ${
+                                                        res[0].comment
+                                                            ? "text-danger"
+                                                            : ""
+                                                    }`}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faMessage}
+                                                        onClick={(
+                                                            event,
+                                                            student_id,
+                                                            project_id
+                                                        ) => {
+                                                            openCommentPopup(
+                                                                student.id,
+                                                                project.id
+                                                            );
+                                                        }}
+                                                    />
+                                                </span>
                                             </span>
                                         </td>
                                     );
@@ -147,6 +231,7 @@ function GroupView() {
                     })}
                 </tbody>
             </table>
+            {/* CONTEXT MENU SECTION */}
             {showMenu && (
                 <ContextMenu
                     x={position.x}
@@ -156,6 +241,17 @@ function GroupView() {
                         updateStatus(color_id);
                     }}
                 />
+            )}
+            {/* POPUP SECTION */}
+            {openPopup && (
+                <Popup
+                    openPopup={openPopup}
+                    closePopup={closePopup}
+                    saveComment={saveComment}
+                    commentData={commentData}
+                >
+                    <h3>My Popup</h3>
+                </Popup>
             )}
         </div>
     );
