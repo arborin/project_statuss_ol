@@ -24,10 +24,12 @@
     padding: 5px;
     border-top: 1px solid #dedede !important;
     border-bottom: 0px !important;
+    color: #fff;
 }
 
 .contextMenu ul>li:hover {
     color: rgba(19, 19, 19, 0.925);
     background-color: #fffef1;
+    color: rgb(219, 219, 219);
 
 }
