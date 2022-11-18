@@ -140,6 +140,7 @@ function Home() {
         if (step + value > 5) {
             value = 0;
         }
+
         if (groupName.trim() !== "") {
             setStep(step + value);
         }
