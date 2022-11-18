@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function GroupCardsComp({ group, index }) {
+function GroupCardsComp({ group, index, deleteGroup }) {
     // console.log(name);
     return (
         <div className="col-4">
@@ -14,10 +14,18 @@ function GroupCardsComp({ group, index }) {
                     </p>
                     <Link
                         to={`/group/${index}`}
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm btn-primary float-end"
                     >
                         Open
                     </Link>
+                    <button
+                        className="btn btn-sm btn-outline-danger"
+                        onClick={(id) => {
+                            deleteGroup(index);
+                        }}
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

@@ -86,12 +86,18 @@ function GroupView() {
                 })}
             </div>
 
-            <table className="table">
+            <table className="table table-bordered">
                 <thead>
                     <tr>
                         <td>#</td>
                         {students.map((student, index) => {
-                            return <td key={index}>{student.name}</td>;
+                            return (
+                                <td key={index}>
+                                    <span className="text-capitalize">
+                                        {student.name}
+                                    </span>
+                                </td>
+                            );
                         })}
                     </tr>
                 </thead>
@@ -128,8 +134,11 @@ function GroupView() {
                                                 backgroundColor: color[0].code,
                                             }}
                                         >
-                                            {student.id} - {project.id} -{" "}
-                                            {color[0].code} - {color[0].name}
+                                            {/* {student.id} - {project.id} -{" "}
+                                            {color[0].code} - {color[0].name} */}
+                                            <span className="text-capitalize">
+                                                {color[0].name}
+                                            </span>
                                         </td>
                                     );
                                 })}

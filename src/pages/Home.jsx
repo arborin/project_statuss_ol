@@ -155,6 +155,7 @@ function Home() {
                     <h5 className="card-title">
                         {step !== 0 ? `Step: ${step}/5` : ""}
                     </h5>
+
                     {step === 0 && (
                         <Welcome startCreateNewGroup={startCreateNewGroup} />
                     )}
