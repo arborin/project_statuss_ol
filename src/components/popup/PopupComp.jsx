@@ -6,12 +6,12 @@ function Popup(props) {
     console.log("----- POPUP COMPONENT -----");
 
     const { openPopup, closePopup, saveComment, commentData } = props;
-    const [data, setCommentData] = useState(commentData);
-    const [comment, setComment] = useState(data.comment);
+    // const [data, setCommentData] = useState(commentData);
+    const [comment, setComment] = useState(commentData.comment);
 
     useEffect(() => {
-        data.comment = comment;
-    }, [comment]);
+        commentData.comment = comment;
+    }, [comment, commentData]);
 
     useEffect(
         (setopenPopup) => {
@@ -60,7 +60,7 @@ function Popup(props) {
                         style={{ marginLeft: "10px" }}
                         className="btn btn-success btn-sm float-end"
                         onClick={() => {
-                            saveComment(data);
+                            saveComment(commentData);
                         }}
                     >
                         Save
