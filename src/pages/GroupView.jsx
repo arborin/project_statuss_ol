@@ -4,7 +4,7 @@ import StatusColorComp from "../components/groups/StatusColorComp";
 import ContextMenu from "../components/contextMenu/ContextMenu";
 import Popup from "../components/popup/PopupComp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faMessage, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function GroupView() {
     const params = useParams();
@@ -201,15 +201,13 @@ function GroupView() {
                                             <span className="text-capitalize">
                                                 {color[0].name}
 
-                                                <span
-                                                    className={`float-end ${
-                                                        res[0].comment
-                                                            ? "text-danger"
-                                                            : ""
-                                                    }`}
-                                                >
+                                                <span className="float-end">
                                                     <FontAwesomeIcon
-                                                        icon={faMessage}
+                                                        icon={
+                                                            res[0].comment
+                                                                ? faEnvelope
+                                                                : faMessage
+                                                        }
                                                         onClick={(
                                                             event,
                                                             student_id,
