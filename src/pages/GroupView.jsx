@@ -130,12 +130,17 @@ function GroupView() {
 
     return (
         <div className="container">
-            <h4 className="mt-4 mb-4">{group.name}</h4>
+            <h5 className="mt-4 mb-4">
+                <span className="text-muted"> Group: </span>
+                {group.name}
+            </h5>
             <div
                 className="mb-5"
                 style={{
                     paddingBottom: "20px",
+                    paddingTop: "20px",
                     borderBottom: "1px solid #ddd",
+                    borderTop: "1px solid #ddd",
                 }}
             >
                 {colors.map((color, index) => {
@@ -148,6 +153,7 @@ function GroupView() {
                     );
                 })}
             </div>
+            <h5 className="text-muted mb-4">Projects and students</h5>
             <table className="table table-bordered">
                 <thead>
                     <tr>

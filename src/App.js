@@ -14,6 +14,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/group/:id" element={<GroupView />} />
+                    <Route path="/*" element={<Home />} />
                 </Routes>
             </BrowserRouter>
         </div>
