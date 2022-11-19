@@ -217,30 +217,27 @@ function GroupView() {
                                                 backgroundColor: color[0].code,
                                             }}
                                         >
-                                            {/* {student.id} - {project.id} -{" "}
-                                            {color[0].code} - {color[0].name} */}
                                             <span className="text-capitalize">
                                                 {color[0].name}
-
-                                                <span className="float-end">
-                                                    <FontAwesomeIcon
-                                                        icon={
-                                                            res[0].comment
-                                                                ? faEnvelope
-                                                                : faMessage
-                                                        }
-                                                        onClick={(
-                                                            event,
-                                                            student_id,
-                                                            project_id
-                                                        ) => {
-                                                            openCommentPopup(
-                                                                student.id,
-                                                                project.id
-                                                            );
-                                                        }}
-                                                    />
-                                                </span>
+                                            </span>
+                                            <span className="float-end">
+                                                <FontAwesomeIcon
+                                                    icon={
+                                                        res[0].comment
+                                                            ? faEnvelope
+                                                            : faMessage
+                                                    }
+                                                    onClick={(
+                                                        event,
+                                                        student_id,
+                                                        project_id
+                                                    ) => {
+                                                        openCommentPopup(
+                                                            student.id,
+                                                            project.id
+                                                        );
+                                                    }}
+                                                />
                                             </span>
                                         </td>
                                     );

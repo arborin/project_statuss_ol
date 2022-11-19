@@ -103,6 +103,12 @@ function Home() {
 
     const startCreateNewGroup = () => {
         setStep(1);
+        // CLEAR ALL STATES
+        setGroupName("");
+        setProjectName("");
+        setProjects([]);
+        setStudentName("");
+        setStudents([]);
 
         console.log("HEHEHE");
     };
@@ -229,7 +235,10 @@ function Home() {
                     )}
 
                     {step === 5 && (
-                        <DoneProcessComp createNewGroup={createNewGroup} />
+                        <DoneProcessComp
+                            moveStep={moveStep}
+                            createNewGroup={createNewGroup}
+                        />
                     )}
 
                     {step > 0 && step < 5 && (

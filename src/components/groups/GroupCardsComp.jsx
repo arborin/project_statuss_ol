@@ -16,7 +16,7 @@ function GroupCardsComp({ group, index, deleteGroup, deleteConfirm }) {
                 <h4 className="card-title text-primary">
                     <span
                         onClick={() => viewGroup(index)}
-                        style={{ cusror: "pointer" }}
+                        style={{ cursor: "pointer" }}
                     >
                         {group.name}
                     </span>
