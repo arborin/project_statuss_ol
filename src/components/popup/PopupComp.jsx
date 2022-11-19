@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "./Popup.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
 
 function Popup(props) {
     const mainElement = useRef();
@@ -37,7 +39,14 @@ function Popup(props) {
             <div className="popup" ref={mainElement}>
                 <div className="popup-inner">
                     <header className="mb-4">
-                        <h5>Add Comment</h5>
+                        <h6>
+                            <FontAwesomeIcon
+                                icon={faMessage}
+                                className="ml-3"
+                            />
+
+                            <span style={{ marginLeft: 10 }}>Add Comment</span>
+                        </h6>
                     </header>
 
                     <div className="popup-content">
@@ -55,23 +64,25 @@ function Popup(props) {
                         </div>
                     </div>
 
-                    <button
-                        style={{ marginLeft: "10px" }}
-                        className="btn btn-success btn-sm float-end"
-                        onClick={() => {
-                            saveComment(commentData);
-                        }}
-                    >
-                        Save
-                    </button>
-                    <button
-                        className="btn btn-secondary btn-sm  float-end"
-                        onClick={() => {
-                            closePopup(false);
-                        }}
-                    >
-                        Close
-                    </button>
+                    <div className="mt-3">
+                        <button
+                            style={{ marginLeft: "10px" }}
+                            className="btn btn-success btn-sm float-end"
+                            onClick={() => {
+                                saveComment(commentData);
+                            }}
+                        >
+                            Save
+                        </button>
+                        <button
+                            className="btn btn-secondary btn-sm  float-end"
+                            onClick={() => {
+                                closePopup(false);
+                            }}
+                        >
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         )
