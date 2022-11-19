@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import GroupListComp from "../components/groups/GroupListComp";
 import { NotificationContainer } from "react-notifications";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+    faFaceFrownOpen,
+    faFaceMehBlank,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Groups() {
     let groups = localStorage.getItem("groups");
