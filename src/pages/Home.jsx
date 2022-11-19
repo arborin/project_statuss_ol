@@ -9,6 +9,10 @@ import InputComp from "../components/InputComp";
 import ColorSelectComp from "../components/ColorSelectComp";
 import DoneProcessComp from "../components/DoneProcessComp";
 import { useNavigate } from "react-router-dom";
+import {
+    NotificationContainer,
+    NotificationManager,
+} from "react-notifications";
 
 function Home() {
     const navigate = useNavigate();
@@ -46,17 +50,20 @@ function Home() {
     };
 
     const addProject = () => {
-        if (projectName.trim() !== "") {
-            let id = 0;
-            if (projects.length > 0) {
-                console.log(projects.slice(-1));
-                let lastItem = projects.slice(-1)[0];
-                id = lastItem.id + 1;
-            }
-            const project = { id: id, name: projectName };
-            setProjects([...projects, project]);
-            setProjectName("");
+        if (projectName.trim() === "") {
+            NotificationManager.warning("Please enter name", "Warning", 3000);
+            return;
         }
+
+        let id = 0;
+        if (projects.length > 0) {
+            console.log(projects.slice(-1));
+            let lastItem = projects.slice(-1)[0];
+            id = lastItem.id + 1;
+        }
+        const project = { id: id, name: projectName };
+        setProjects([...projects, project]);
+        setProjectName("");
     };
 
     const deleteProject = (id) => {
@@ -67,7 +74,11 @@ function Home() {
     };
 
     const addStudent = () => {
-        console.log("ADD STUDENT");
+        if (studentName.trim() === "") {
+            NotificationManager.warning("Please enter name", "Warning", 3000);
+            return;
+        }
+
         let id = 0;
         if (students.length > 0) {
             console.log(students.slice(-1));
@@ -123,17 +134,9 @@ function Home() {
             groups.push(data);
         }
 
-        console.log(groups);
-
         localStorage.setItem("groups", JSON.stringify(groups));
-        // console.log(groups);
-        // localStorage.setItem("groups");
-        // redirect to groups
 
-        console.log("DONE");
-
-        let path = `/groups`;
-        navigate(path);
+        navigate(`/groups`, { state: "new" });
     };
 
     const moveStep = (value) => {
@@ -141,13 +144,45 @@ function Home() {
             value = 0;
         }
 
-        if (groupName.trim() !== "") {
+        if (value > 0) {
+            // NEXT BUTTON
+            if (groupName.trim() === "" && step === 1) {
+                NotificationManager.warning(
+                    "Please fill group name",
+                    "Warning!",
+                    3000
+                );
+                return;
+            }
+
+            if (projects.length === 0 && step === 2) {
+                NotificationManager.warning(
+                    "Please add project",
+                    "Warning!",
+                    3000
+                );
+                return;
+            }
+
+            if (students.length === 0 && step === 3) {
+                NotificationManager.warning(
+                    "Please add students",
+                    "Warning!",
+                    3000
+                );
+                return;
+            }
+
+            setStep(step + value);
+        } else {
+            // PERV BUTTON
             setStep(step + value);
         }
     };
 
     return (
         <div className="center-content container">
+            <NotificationContainer />
             <div
                 className="card "
                 style={{ marginTop: "50px", width: "40rem" }}
