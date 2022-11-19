@@ -10,7 +10,7 @@ function Welcome({ startCreateNewGroup }) {
                 style={{ marginTop: "20px", fontSize: "70px" }}
                 className="text-muted"
             />
-            <p className="card-text mt-4 mb-4">
+            <p className="card-text mt-5 mb-5">
                 You can create new group and add new projects and students into
                 it.
             </p>
