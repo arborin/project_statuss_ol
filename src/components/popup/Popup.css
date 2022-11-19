@@ -68,3 +68,27 @@ header h2 {
 .popup-content {
     padding-bottom: 30px;
 }
+
+
+
+/* confirm */
+
+.confirm-inner {
+    color: #454b4b;
+    width: 300px;
+    background-color: #f9fdfd;
+    border: 1px solid #9db7e870;
+    position: absolute;
+    padding: 20px;
+    left: 50%;
+    top: 30%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    -webkit-box-shadow: 8px 8px 24px 0px rgb(213, 216, 243);
+    -moz-box-shadow: 8px 8px 24px 0px rgb(213, 216, 243);
+    box-shadow: 8px 8px 24px 0px rgba(81, 81, 81, 0.77);
+    border-radius: 5px;
+
+    animation: fadeIn 0.5s;
+}

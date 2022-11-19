@@ -49,7 +49,8 @@ function Home() {
         setColors(updatedColors);
     };
 
-    const addProject = () => {
+    const addProject = (e) => {
+        e.preventDefault();
         if (projectName.trim() === "") {
             NotificationManager.warning("Please enter name", "Warning", 3000);
             return;
@@ -73,7 +74,8 @@ function Home() {
         setProjects(newProjects);
     };
 
-    const addStudent = () => {
+    const addStudent = (e) => {
+        e.preventDefault();
         if (studentName.trim() === "") {
             NotificationManager.warning("Please enter name", "Warning", 3000);
             return;
@@ -136,7 +138,7 @@ function Home() {
 
         localStorage.setItem("groups", JSON.stringify(groups));
 
-        navigate(`/groups`, { state: "new" });
+        navigate(`/groups`);
     };
 
     const moveStep = (value) => {

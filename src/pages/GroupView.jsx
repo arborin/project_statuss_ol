@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import StatusColorComp from "../components/groups/StatusColorComp";
 import ContextMenu from "../components/contextMenu/ContextMenu";
 import Popup from "../components/popup/PopupComp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+    faMessage,
+    faEnvelope,
+    faAngleDoubleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 function GroupView() {
     const params = useParams();
@@ -131,8 +135,19 @@ function GroupView() {
     return (
         <div className="container">
             <h5 className="mt-4 mb-4">
-                <span className="text-muted"> Group: </span>
-                {group.name}
+                <Link to="/groups">
+                    <FontAwesomeIcon
+                        icon={faAngleDoubleLeft}
+                        style={{
+                            marginTop: "20px",
+                            marginRight: "10px",
+                            fontSize: "16px",
+                        }}
+                        className="text-primary"
+                    />
+                </Link>
+                Group:
+                <span className="text-muted">{` ${group.name}`}</span>
             </h5>
             <div
                 className="mb-5"

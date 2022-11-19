@@ -7,13 +7,13 @@ function Nav() {
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     <FontAwesomeIcon
                         icon={faRocket}
                         style={{ marginRight: "5px" }}
                         className="text-primary"
                     />
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"

@@ -3,7 +3,6 @@ import "./Popup.css";
 
 function Popup(props) {
     const mainElement = useRef();
-    console.log("----- POPUP COMPONENT -----");
 
     const { openPopup, closePopup, saveComment, commentData } = props;
     // const [data, setCommentData] = useState(commentData);
