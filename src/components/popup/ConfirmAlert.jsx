@@ -19,28 +19,31 @@ function ConfirmAlert(props) {
     );
     return (
         openPopup && (
-            <div className="popup" ref={mainElement}>
-                <div className="confirm-inner">
+            <div className="popup text-center" ref={mainElement}>
+                <div className="confirm-inner text-center">
                     <header className="mb-4">
                         <h5>Are you sure?</h5>
                     </header>
-                    <div className="popup-content">
+                    <div
+                        className="popup-content"
+                        style={{ paddingBottom: "0px" }}
+                    >
                         <button
-                            style={{ marginLeft: "10px" }}
-                            className="btn btn-success btn-sm float-end"
-                            onClick={() => {
-                                confirmDeleteAction(confirmData.id);
-                            }}
-                        >
-                            Yes
-                        </button>
-                        <button
-                            className="btn btn-secondary btn-sm  float-end"
+                            className="btn btn-secondary btn-sm"
                             onClick={() => {
                                 closePopup(false);
                             }}
                         >
                             No
+                        </button>
+                        <button
+                            style={{ marginLeft: "10px" }}
+                            className="btn btn-success btn-sm"
+                            onClick={() => {
+                                confirmDeleteAction(confirmData.id);
+                            }}
+                        >
+                            Yes
                         </button>
                     </div>
                 </div>
