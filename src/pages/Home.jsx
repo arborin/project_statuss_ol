@@ -211,7 +211,7 @@ function Home() {
                     )}
                     {step === 2 && (
                         <InputComp
-                            title="project"
+                            title="projects"
                             value={projectName}
                             setValue={setProjectName}
                             addNew={addProject}
@@ -220,7 +220,7 @@ function Home() {
 
                     {step === 3 && (
                         <InputComp
-                            title="student"
+                            title="students"
                             value={studentName}
                             setValue={setStudentName}
                             addNew={addStudent}
