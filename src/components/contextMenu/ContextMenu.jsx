@@ -19,7 +19,9 @@ function ContextMenu(props) {
                         return (
                             <li
                                 key={index}
-                                style={{ backgroundColor: color.code }}
+                                style={{
+                                    borderLeft: `10px solid ${color.code}`,
+                                }}
                                 className="text-capitalize"
                                 onClick={(color_id) => updateStatus(color.id)}
                             >
