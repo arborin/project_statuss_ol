@@ -4,6 +4,7 @@ import Groups from "./pages/Groups";
 import Home from "./pages/Home";
 import Nav from "./pages/Nav";
 import GroupView from "./pages/GroupView";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
     return (
@@ -14,7 +15,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/group/:id" element={<GroupView />} />
-                    <Route path="/*" element={<Home />} />
+                    <Route path="/*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
         </div>
