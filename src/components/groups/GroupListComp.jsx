@@ -62,7 +62,7 @@ function GroupListComp({ groups }) {
             );
         });
     } else {
-        return navigate("/home");
+        return navigate("/");
     }
 }
 
